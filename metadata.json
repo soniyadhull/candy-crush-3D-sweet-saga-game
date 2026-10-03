@@ -1,0 +1,6 @@
+{
+  "name": "Candy Crush 3D: Sweet Saga",
+  "description": "3D match-3 candy adventure with vibrant visual effects, 100+ levels, anime companion, dynamic music, daily rewards, haptic feedback, and friend leaderboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

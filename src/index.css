@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Fredoka', cursive, sans-serif;
+  }
+}
+
+/* 3D candy lighting & shading helper classes */
+.candy-board-container,
+.candy-board-container *,
+.candy-board-frame,
+.candy-tile {
+  touch-action: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  overscroll-behavior: none !important;
+}
+
+.game-active-container {
+  overscroll-behavior-y: contain;
+}
+
+.candy-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.candy-selected {
+  transform: translateZ(24px) scale(1.18) !important;
+  filter: brightness(1.25) drop-shadow(0 0 16px rgba(255, 255, 255, 0.95));
+}
+
+@keyframes jelly-wobble {
+  0% { transform: scale(1, 1); }
+  25% { transform: scale(1.15, 0.85); }
+  50% { transform: scale(0.88, 1.12); }
+  75% { transform: scale(1.06, 0.96); }
+  100% { transform: scale(1, 1); }
+}
+
+.candy-jelly-wobble {
+  animation: jelly-wobble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes candy-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.animate-candy-pulse {
+  animation: candy-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes rainbow-shimmer {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.animate-rainbow {
+  animation: rainbow-shimmer 4s linear infinite;
+}
+
+@keyframes float-bubble {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-bubble 3s ease-in-out infinite;
+}
+
+@keyframes screen-shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4px, 4px); }
+  40% { transform: translate(4px, -3px); }
+  60% { transform: translate(-3px, 2px); }
+  80% { transform: translate(3px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.screen-shake {
+  animation: screen-shake 0.35s ease-out;
+}
+
+/* Silky Smooth Jelly Candy Drop Animation with Juicy Gelatin Elastic Bounce */
+@keyframes candy-drop-bounce {
+  0% {
+    transform: translateY(calc(var(--drop-units, 1) * -110%)) scale(0.92, 1.14);
+    opacity: 0.85;
+  }
+  64% {
+    transform: translateY(6%) scale(1.18, 0.84);
+    opacity: 1;
+  }
+  82% {
+    transform: translateY(-2.5%) scale(0.94, 1.08);
+  }
+  92% {
+    transform: translateY(1%) scale(1.03, 0.98);
+  }
+  100% {
+    transform: translateY(0%) scale(1, 1);
+    opacity: 1;
+  }
+}
+
+.candy-dropping {
+  animation: candy-drop-bounce 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Silky Smooth Jelly Burst Pop Animation */
+@keyframes candy-pop-smooth {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.35, 1.25) rotate(6deg);
+    filter: brightness(1.8) drop-shadow(0 0 16px rgba(255, 255, 255, 0.98));
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.15, 1.4) rotate(-4deg);
+    filter: brightness(2.1);
+  }
+  100% {
+    transform: scale(0.05) rotate(20deg);
+    filter: brightness(2.5);
+    opacity: 0;
+  }
+}
+
+.candy-popping {
+  animation: candy-pop-smooth 0.18s cubic-bezier(0.3, 0, 0.2, 1) forwards !important;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Gentle Idle Hint Pulse */
+@keyframes candy-hint-glow {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7));
+  }
+  50% {
+    transform: scale(1.15) translateY(-3px);
+    filter: drop-shadow(0 0 16px rgba(250, 204, 21, 1)) brightness(1.2);
+  }
+}
+
+.candy-hint {
+  animation: candy-hint-glow 1.2s ease-in-out infinite;
+  z-index: 25;
+  will-change: transform, filter;
+}
+
+/* Smooth Interactive Swap Transition */
+.candy-swap-animating {
+  transition: transform 0.14s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
